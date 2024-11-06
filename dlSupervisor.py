@@ -10,18 +10,24 @@ def is_valid_http_url(url):
     return parsed_url.scheme in ['http', 'https'] and bool(parsed_url.netloc)
 
 
-def forCheck(dataframelist: pd,navnepaasojle):
-   
-    appended=[]
-    for streng in dataframelist.iterrows():
-        if (isinstance(streng[navnepaasojle[0]],str)):
-            if (is_valid_http_url(streng[navnepaasojle[0]])):
-                r=requests.head(streng[navnepaasojle[0]])
+def forCheck(df,navnepaasojle):
+    counter=0
+    testforsog=10
+    for index, row in df.iterrows():
+        if (isinstance(row.loc[navnepaasojle[0]],str)):
+            if (is_valid_http_url(row[navnepaasojle[0]])):
+                print(row[navnepaasojle[0]])
+                r=requests.head(row[navnepaasojle[0]])
                 if r.status_code==200:
-                    appended.append(streng[navnepaasojle[0]])
+                    row[navnepaasojle[0]]
             else:
-                appended.append("NVU")
+                "NVU"
         else:
-            appended.append("NoSTR")
-    return(appended)
+            "NoSTR"
+            
+        counter+=1
+        print(counter)
+        if (counter>testforsog):
+            break
+    return("done")
         

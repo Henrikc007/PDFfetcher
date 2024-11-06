@@ -7,6 +7,8 @@
 import pandas as pd
 import dlSupervisor
 import downloadList
+import asyncio
+
 
 filMedListen = 'GRI_2017_2020.xlsx'
 sheetNavn = '0'
