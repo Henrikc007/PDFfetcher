@@ -26,9 +26,9 @@ toSojler = [prioliste,sekundaerListe]
 #downloadklasse = downloadList.filtreretDataframe(dataframeListen,toSojler)
 
 print("vi søger listerne igennem for at få tjekket alle tekst filer igennem")
-muligepdfer=dlSupervisor.forCheck(dataframeListen,toSojler)
+muligepdfer=asyncio.run(dlSupervisor.forCheck(dataframeListen,toSojler))
 print("vi har gennemsøgt alle linjer, i søjlerne prioliste og sekundaerliste og tjekket om det er htmlsider")
-
+ 
 
 #download 5 stks som test
 print("færdig")
