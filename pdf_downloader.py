@@ -9,7 +9,9 @@ import dlSupervisor
 import downloadList
 import asyncio
 
+MAX_CONCURRENT_TASKS = 10
 
+semaphore = asyncio.Semaphore(MAX_CONCURRENT_TASKS)
 filMedListen = 'GRI_2017_2020.xlsx'
 sheetNavn = '0'
 #dataframeListen = downloadList.returnDatafile(filMedListen,sheetNavn)

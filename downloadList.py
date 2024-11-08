@@ -11,4 +11,8 @@ class filtreretDataframe():
         self.data = datafyld.sliced_df[rakker]
         
 
+def downloadPDF(file):
+    myfile = file
 
+def checkIfPDFisthere():
+    hello="world"
