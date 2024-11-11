@@ -1,4 +1,6 @@
 #thiss is a modification and improvement of original downloader to make the further development easyer
+#my dl path is set to subfolder called dl_pdf
+pth="C:/Users\HenrikChristensen/OneDrive - Specialisterne/Skrivebord/ProjektUge5/PDFfetcher/dl_pdf"
 
 #the module for handling the list of files to be downloadet is called downloadList
 
@@ -6,7 +8,6 @@
 
 import pandas as pd
 import dlSupervisor
-import downloadList
 import asyncio
 
 MAX_CONCURRENT_TASKS = 10
@@ -14,24 +15,22 @@ MAX_CONCURRENT_TASKS = 10
 semaphore = asyncio.Semaphore(MAX_CONCURRENT_TASKS)
 filMedListen = 'GRI_2017_2020.xlsx'
 sheetNavn = '0'
-#dataframeListen = downloadList.returnDatafile(filMedListen,sheetNavn)
+
 
 print("læser excel fil ind som dataframe")
 dataframeListen = pd.read_excel(filMedListen,sheetNavn)
 
 #her er angivet mine prioriterede og sekundeærer søjler i dataframe hvor adresserne burde ligge
 prioliste='Pdf_URL'
-sekundaerListe='Report Html Address'
-toSojler = [prioliste,sekundaerListe]
+sekundaer_liste='Report Html Address'
+toSojler = [prioliste,sekundaer_liste]
 
 
 #downloadklasse = downloadList.filtreretDataframe(dataframeListen,toSojler)
 
 print("vi søger listerne igennem for at få tjekket alle tekst filer igennem")
 muligepdfer=asyncio.run(dlSupervisor.forCheck(dataframeListen,toSojler))
-print("vi har gennemsøgt alle linjer, i søjlerne prioliste og sekundaerliste og tjekket om det er htmlsider")
- 
+print("Vi har gennemløbet de mulige adresser ")
 
 #download 5 stks som test
 print("færdig")
-
